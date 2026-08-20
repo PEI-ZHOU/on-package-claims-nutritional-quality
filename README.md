@@ -1,62 +1,112 @@
-# Replication Package README
+# Replication Package
 
 ## On-package claims are imperfect signals of overall nutritional quality
 
-**Journal:** *Nature Food*
+**Journal:** *Nature Food*  
+**Replication package DOI:** [https://doi.org/10.5281/zenodo.21796219](https://doi.org/10.5281/zenodo.21796219)
 
-## 1. Project Overview
+## 1. Project overview
 
-This replication package provides the code and synthetic data used to clean, construct, and analyze product-level nutrition and claim data from the Mintel Global New Products Database (GNPD). The analysis focuses on food and beverage products launched between 2015 and 2024 and examines the relationship between on-package claims and overall nutritional quality, measured using the UK Nutrient Profiling Model (NPM 2004–2005).
+This replication package provides the code and synthetic data used to clean, construct, and analyze product-level nutrition and claim data from the Mintel Global New Products Database (GNPD). The study covers food and beverage products launched between 2015 and 2024 and examines the relationship between on-package claims and overall nutritional quality, measured using the UK Nutrient Profiling Model (NPM 2004–2005).
 
-Because GNPD is a restricted-use database, the original data cannot be redistributed. This package therefore includes detailed code and instructions to enable replication for users with appropriate data access, along with a synthetic dataset that allows users to execute the analysis workflow, verify the replication code, and reproduce representative descriptive and nonparametric analyses without disclosing the underlying restricted-use data.
+Because GNPD is a restricted-use database, the original product-level data cannot be redistributed. The included synthetic dataset preserves the structure and key statistical properties required to execute the analytical workflow without containing real product-level observations.
 
-## 2. Data Availability and Access
+## 2. Data availability
 
-The data used in this study are sourced from the Mintel Global New Products Database (GNPD), a proprietary dataset that requires a valid license. Access information is available at: https://www.mintel.com/products/gnpd/.
+The original data are from the proprietary Mintel GNPD and require a valid license. Access information is available from [Mintel](https://www.mintel.com/products/gnpd/).
 
-Due to licensing restrictions, these data are not included in this replication package. A synthetic dataset is provided to support replication; it preserves the overall structure and key statistical properties of the cleaned data needed for reproducibility while not containing real product-level observations.
+The replication package includes the following synthetic dataset:
 
-## 3. Folder Structure
+`Data/GNPD-AllFoodDrink_Claim_NPMScore_2015_2024_synthetic.xlsx`
 
-- `Code/`  
-  Contains all scripts for data cleaning, variable construction, and analysis. The folder is organized into subfolders by function:
+The synthetic dataset supports code verification and reproduction of representative descriptive and nonparametric analyses. It is not intended to reproduce the exact numerical results reported in the paper.
 
-  - `DataClean/`  
-    Stata code for data cleaning and variable construction, including claim variable construction, nutrition data processing, and NPM score calculation.
+## 3. Repository structure
 
-  - `DataVisualization/`  
-    Jupyter notebooks (Python) used for statistical analysis and figure generation.
+```text
+ReplicationPackage/
+├── Code/
+│   ├── DataClean/
+│   │   ├── CleanClaims.do
+│   │   ├── NPM_Step1_Serving_FVN_Beverages.do
+│   │   ├── NPM_Step1_Serving_FVN_Food.do
+│   │   ├── NPM_Step2_NutritionCleaning.do
+│   │   └── NPM_Step3_ScoreCalculation.do
+│   ├── DataVisualization/
+│   │   ├── Main_Figure_Table.ipynb
+│   │   └── Supplementary_Figures_and_Extended_Tables.ipynb
+│   ├── DataClean_Mintel_Drink.do
+│   ├── DataClean_Mintel_Food.do
+│   └── MasterCode.do
+├── Data/
+│   └── GNPD-AllFoodDrink_Claim_NPMScore_2015_2024_synthetic.xlsx
+├── README.md
+├── ReadMe.docx
+└── ReadMe.pdf
+```
 
-  - Main scripts  
-    Includes `DataClean_Mintel_Food.do`, `DataClean_Mintel_Drink.do`, and `MasterCode.do`. The `MasterCode.do` script serves as the main entry point for the Stata-based data cleaning and variable construction workflow.
+## 4. Software
 
-- `Data/`  
-  Contains the synthetic dataset:
+Data cleaning and variable construction were conducted using Stata/MP 18. Statistical analysis, figure generation, and source-data preparation were conducted using Python 3.12.7 in Jupyter Notebook.
 
-  - `GNPD-AllFoodDrink_Claim_NPMScore_2015_2024_synthetic.xlsx`
+Required Python libraries are imported at the beginning of each notebook and include:
 
-  The synthetic dataset is designed to preserve the key structural and statistical properties required for replication of the descriptive and nonparametric analyses while preventing disclosure of the underlying restricted data.
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `seaborn`
+- `scipy`
+- `openpyxl`
+- `python-docx`
 
-- `README.md`  
-  Provides documentation and instructions for replication.
+## 5. Replication instructions
 
-## 4. Instructions for Replication
+### Using the included synthetic dataset
 
-Data cleaning and variable construction were conducted in Stata/MP 18, and statistical analysis and figure generation were performed in Python 3.12.7.
+1. Download or clone the replication package.
+2. In both notebooks, set `PROJECT_PATH` to the location of your `ReplicationPackage` folder, then run all cells from beginning to end.
 
-### Step 1. Data Cleaning and Variable Construction
+### Using licensed GNPD data
 
-Update the project directory paths in the Stata scripts and run `MasterCode.do` to execute the full data cleaning and variable construction workflow.
+1. Update the project-directory paths in the Stata scripts.
+2. Run `Code/MasterCode.do` to execute the data-cleaning and variable-construction workflow.
+3. Run the two Jupyter notebooks using the resulting cleaned analytical dataset.
 
-### Step 2. Figure and Table Generation
+## 6. Generated outputs
 
-After the cleaned analysis dataset has been generated, run the Jupyter notebooks in the `DataVisualization/` folder. Required Python libraries are noted at the beginning of the Jupyter notebooks.
+### Main figures and table
 
-- `AllFoodDrink_DataVisualization.ipynb` for the main manuscript figures and tables.
-- `AllFoodDrink_DataVisualization_Appendix.ipynb` for appendix figures, appendix tables, and extended data tables.
+`Main_Figure_Table.ipynb` generates Table 1 and Figures 1–4 under:
 
-## 5. Important Notes
+`Result/Final_Main_Figures/`
 
-The synthetic dataset is provided solely for code verification and reproducibility purposes and is not intended to reproduce the exact numerical results reported in the paper. The synthetic data preserve the overall structure and analytical workflow of the study, allowing users to execute the replication code and reproduce representative descriptive and nonparametric analyses, but the resulting estimates, statistical significance patterns, and figures may differ from those reported in the paper. Researchers with access to the original GNPD data should be able to reproduce the published results by running the provided Stata data cleaning and variable construction scripts, followed by the replication code, on the restricted-use dataset as described in the replication instructions.
+The figure source-data workbooks are saved under `Result/Final_Main_Figures/Source_Data_Workbooks/`:
 
-Use of the code for educational purposes is permitted. Researchers using the code for academic work should cite the associated paper and this replication package. For other uses, please contact the authors.
+- `Figure1_SourceData.xlsx`
+- `Figure2_SourceData.xlsx`
+- `Figure3_SourceData.xlsx`
+- `Figure4_SourceData.xlsx`
+
+### Supplementary figures and extended data tables
+
+`Supplementary_Figures_and_Extended_Tables.ipynb` generates Supplementary Figures S1–S3 and the extended data tables under:
+
+`Result/Appendix/`
+
+The supplementary figure source-data workbooks are saved under `Result/Appendix/Source_Data_Workbooks/`:
+
+- `Figure_S1_SourceData.xlsx`
+- `Figure_S2_SourceData.xlsx`
+- `Figure_S3_SourceData.xlsx`
+
+## 7. Important notes
+
+Results generated from the synthetic dataset may differ from the published estimates, statistical significance patterns, and figures. Researchers with access to the original GNPD data can reproduce the published results by running the data-cleaning scripts followed by the visualization code.
+
+Use of the code for educational purposes is permitted. Researchers should cite the associated paper and this replication package. For other uses, contact the authors.
+
+## 8. Citation
+
+When using this replication package, cite the associated paper and the archived package:
+
+> *Replication package for “On-package claims are imperfect signals of overall nutritional quality.”* Zenodo. [https://doi.org/10.5281/zenodo.21796219](https://doi.org/10.5281/zenodo.21796219).
