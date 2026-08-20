@@ -41,7 +41,6 @@ ReplicationPackage/
 ├── Data/
 │   └── GNPD-AllFoodDrink_Claim_NPMScore_2015_2024_synthetic.xlsx
 ├── README.md
-├── ReadMe.docx
 └── ReadMe.pdf
 ```
 
