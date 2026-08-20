@@ -3,7 +3,7 @@
 ## On-package claims are imperfect signals of overall nutritional quality
 
 **Journal:** *Nature Food*  
-**Replication package DOI:** [https://doi.org/10.5281/zenodo.21796219](https://doi.org/10.5281/zenodo.21796219)
+**Replication package DOI:** [https://doi.org/10.5281/zenodo.21796219](https://doi.org/10.5281/zenodo.21796218)
 
 ## 1. Project overview
 
