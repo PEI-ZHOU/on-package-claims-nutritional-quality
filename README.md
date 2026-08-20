@@ -102,7 +102,7 @@ The supplementary figure source-data workbooks are saved under `Result/Appendix/
 
 Results generated from the synthetic dataset may differ from the published estimates, statistical significance patterns, and figures. Researchers with access to the original GNPD data can reproduce the published results by running the data-cleaning scripts followed by the visualization code.
 
-Use of the code for educational purposes is permitted. Researchers should cite the associated paper and this replication package. For other uses, contact the authors.
+The replication package is released under the Creative Commons Attribution 4.0 International license. Users should cite the associated paper and the archived replication package.
 
 ## 8. Citation
 
